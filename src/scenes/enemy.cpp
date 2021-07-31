@@ -1,5 +1,7 @@
-#include "raylib.h"
+
+#include <vector>
 #include <iostream>
+#include "raylib.h"
 class Enemy
 {
 
@@ -7,10 +9,10 @@ public:
     float radius;
     Vector2 center;
 
-    Enemy(float radius, int centerX, int centerY)
+    Enemy(float r, int x, int y)
     {
-        (*this).radius = radius;
-        (*this).center = {centerX, centerY};
+        radius = r;
+        center = {x, y};
     }
 
     void draw()
@@ -29,8 +31,8 @@ public:
 
 int main()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
+    int screenWidth = 600;
+    int screenHeight = 600;
 
     InitWindow(screenWidth, screenHeight, "test game");
     if (!IsWindowFullscreen())
@@ -38,17 +40,29 @@ int main()
 
     SetTargetFPS(60);
 
-    Enemy e(10, 10, 15.0);
+    std::vector<Enemy> enemies;
+
+    for (int i = 0; i < 30; ++i)
+    {
+        int x = GetRandomValue(1, screenWidth);
+        int y = GetRandomValue(1, screenHeight);
+        int radius = GetRandomValue(6, 10);
+        Enemy e(radius, x, y);
+        enemies.push_back(e);
+    }
+
     while (!WindowShouldClose())
     {
         ClearBackground(RAYWHITE);
         BeginDrawing();
 
-        e.draw();
+        for (int i = 0; i < 30; ++i)
+        {
+            enemies[i].draw();
+            enemies[i].update();
+        }
 
         EndDrawing();
-
-        e.update();
     }
 
     CloseWindow();

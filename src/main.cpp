@@ -36,10 +36,10 @@ int main() {
     Player::Update();
     Player::Draw();
 
-    // for (int i = 0; i < Enemy::enemies.size(); ++i) {
-    //   Enemy::enemies[i].Draw();
-    //   Enemy::enemies[i].Update();
-    // }
+    for (int i = 0; i < Enemy::enemies.size(); ++i) {
+      Enemy::enemies[i].Draw();
+      Enemy::enemies[i].Update();
+    }
 
     for (int i = 0; i < Bullet::bulletes.size(); ++i) {
       Bullet::bulletes[i].Draw();

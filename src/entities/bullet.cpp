@@ -14,7 +14,7 @@ Bullet::Bullet(Vector2 v, float rotation) {
   bulletes.push_back(*this);
 }
 
-// Bullet::~Bullet() { std::cout << "bullet destroyed" << std::endl; }
+Bullet::~Bullet() { }
 
 void Bullet::Draw() { DrawCircle(center.x, center.y, RADIUS, BULLET_COLOR); }
 

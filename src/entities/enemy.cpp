@@ -30,6 +30,7 @@ void Enemy::Update() {
 }
 
 void Enemy::Reset() { 
+  std::cout << "In";
   radius = 16;
   center = {GetRandomValue(-(Const::screenMargin + radius),
                            Const::screenWidth + Const::screenMargin),

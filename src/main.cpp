@@ -1,31 +1,41 @@
+#include "headers/enemy.h"
+#include "headers/player.h"
 #include "raylib.h"
 
-int main()
-{
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
+Vector2 Player::position = {0, 0};
+Vector2 Player::speed = {100, 100};
+float Player::acceleration = 0;
+float Player::rotation = 0;
+Color Player::playerColor = RED;
+Color Player::turretColor = BLACK;
 
-    InitWindow(screenWidth, screenHeight, "test game");
-    if (!IsWindowFullscreen())
-        ToggleFullscreen();
+int main() {
+  InitWindow(screenWidth, screenHeight, "player test");
+  // if (!IsWindowFullscreen()) ToggleFullscreen();
 
-    SetTargetFPS(60);
+  screenWidth = GetScreenWidth();
+  screenHeight = GetScreenHeight();
 
-    bool key = false;
-    while (!WindowShouldClose())
-    {
-        key = IsKeyDown(KEY_CAPS_LOCK);
+  SetTargetFPS(60);
 
-        BeginDrawing();
+  Player::Init();
+  for (int i = 0; i < 30; ++i) {
+    Enemy e;
+  }
 
-        ClearBackground(RAYWHITE);
+  while (!WindowShouldClose()) {
+    BeginDrawing();
 
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-        DrawText("caps lock " + (int)key, 190, 250, 20, LIGHTGRAY);
-
-        EndDrawing();
+    ClearBackground(RAYWHITE);
+    Player::Update();
+    Player::Draw();
+    for (int i = 0; i < Enemy::enemies.size(); ++i) {
+      Enemy::enemies[i].Draw();
+      Enemy::enemies[i].Update();
     }
+    EndDrawing();
+  }
 
-    CloseWindow();
-    return 0;
+  CloseWindow();
+  return 0;
 }

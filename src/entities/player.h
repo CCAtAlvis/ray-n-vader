@@ -1,6 +1,6 @@
 #pragma once
 
-#include <math.h>
+#include <iostream>
 
 #include "../headers/game.h"
 #include "bullet.h"
@@ -30,7 +30,7 @@ class Player {
   static void Draw() {
     // rotate
     Vector2 v1 = {position.x + sinf(rotation * DEG2RAD) * (TURRET_SIZE),
-                  position.y - cosf(rotation * DEG2RAD) * (SHIP_HEIGHT)};
+                  position.y - cosf(rotation * DEG2RAD) * (TURRET_SIZE)};
     Vector2 v2 = {position.x - cosf(rotation * DEG2RAD) * (TURRET_SIZE / 2),
                   position.y - sinf(rotation * DEG2RAD) * (TURRET_SIZE / 2)};
     Vector2 v3 = {position.x + cosf(rotation * DEG2RAD) * (TURRET_SIZE / 2),
@@ -44,6 +44,10 @@ class Player {
     v2.y -= cosf(rotation * DEG2RAD) * TURRET_TRANSLATION;
     v3.y -= cosf(rotation * DEG2RAD) * TURRET_TRANSLATION;
     DrawTriangle(v1, v2, v3, playerColor);
+
+    if (IsKeyPressed(KEY_SPACE)) {
+      Bullet b(v1, rotation);
+    }
 
     DrawPoly(position, 4, SHIP_HEIGHT, rotation, playerColor);
   }
@@ -60,8 +64,8 @@ class Player {
       if (acceleration > -1) acceleration -= 0.04f;
     }
 
-    speed.x = sin(rotation * DEG2RAD) * PLAYER_SPEED;
-    speed.y = cos(rotation * DEG2RAD) * PLAYER_SPEED;
+    speed.x = sinf(rotation * DEG2RAD) * PLAYER_SPEED;
+    speed.y = cosf(rotation * DEG2RAD) * PLAYER_SPEED;
 
     if (position.x > screenWidth - SHIP_WIDTH - screenMargin)
       position.x = screenWidth - SHIP_WIDTH - screenMargin;
@@ -77,12 +81,6 @@ class Player {
     position.y -= (speed.y * acceleration);
 
     acceleration = Lerp(acceleration, 0, 0.03f);
-
-    if (IsKeyPressed(KEY_SPACE)) {
-      Bullet b;
-      b.direction.x = sin(rotation * DEG2RAD);
-      b.direction.y = cos(rotation * DEG2RAD);
-    }
   }
 };
 

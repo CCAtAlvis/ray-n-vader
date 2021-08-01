@@ -6,6 +6,9 @@ class Const {
   static int screenWidth;
   static int screenHeight;
   static int screenMargin;
+  static int score;
+  static bool isGameOver;
+  static bool isGamePaused;
 };
 
 #endif

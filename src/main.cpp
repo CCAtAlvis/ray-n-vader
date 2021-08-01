@@ -11,6 +11,8 @@
 int Const::screenWidth = 800;
 int Const::screenHeight = 450;
 int Const::screenMargin = 20;
+bool Const::isGameOver = false;
+bool Const::isGamePaused = false;
 
 int main() {
   InitWindow(Const::screenWidth, Const::screenHeight, "player test");
@@ -33,10 +35,10 @@ int main() {
     Player::Update();
     Player::Draw();
 
-    for (int i = 0; i < Enemy::enemies.size(); ++i) {
-      Enemy::enemies[i].Draw();
-      Enemy::enemies[i].Update();
-    }
+    // for (int i = 0; i < Enemy::enemies.size(); ++i) {
+    //   Enemy::enemies[i].Draw();
+    //   Enemy::enemies[i].Update();
+    // }
 
     for (int i = 0; i < Bullet::bulletes.size(); ++i) {
       Bullet::bulletes[i].Draw();

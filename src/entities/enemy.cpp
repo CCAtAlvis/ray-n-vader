@@ -9,11 +9,17 @@
 
 Enemy::Enemy() {
   radius = 16;
-  center = {GetRandomValue(-(Const::screenMargin + radius),
-                           Const::screenWidth + Const::screenMargin),
-            GetRandomValue(-(Const::screenMargin + radius),
-                           Const::screenHeight + Const::screenMargin)};
 
+  int quadrant = GetRandomValue(1, 4);
+  if (quadrant == 1) {
+    center = {0, GetRandomValue(0, Const::screenHeight)};
+  } else if (quadrant == 2) {
+    center = {Const::screenWidth, GetRandomValue(0, Const::screenHeight)};
+  } else if (quadrant == 3) {
+    center = {GetRandomValue(0, Const::screenWidth), 0};
+  } else if (quadrant == 4) {
+    center = {GetRandomValue(0, Const::screenWidth), Const::screenHeight};
+  }
   enemies.push_back(*this);
 }
 
@@ -29,13 +35,17 @@ void Enemy::Update() {
   if (center.y > Player::position.y) center.y -= yfactor / (xfactor + yfactor);
 }
 
-void Enemy::Reset() { 
-  std::cout << "In";
-  radius = 16;
-  center = {GetRandomValue(-(Const::screenMargin + radius),
-                           Const::screenWidth + Const::screenMargin),
-            GetRandomValue(-(Const::screenMargin + radius),
-                           Const::screenHeight + Const::screenMargin)};
- }
+void Enemy::Reset() {
+  int quadrant = GetRandomValue(1, 4);
+  if (quadrant == 1) {
+    center = {0, GetRandomValue(0, Const::screenHeight)};
+  } else if (quadrant == 2) {
+    center = {Const::screenWidth, GetRandomValue(0, Const::screenHeight)};
+  } else if (quadrant == 3) {
+    center = {GetRandomValue(0, Const::screenWidth), 0};
+  } else if (quadrant == 4) {
+    center = {GetRandomValue(0, Const::screenWidth), Const::screenHeight};
+  }
+}
 
 std::vector<Enemy> Enemy::enemies;

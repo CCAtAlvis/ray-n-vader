@@ -51,7 +51,7 @@ void Player::Update() {
     if (acceleration < 1) acceleration += 0.04f;
   }
 
-  if (IsKeyDown(KEY_DOWN) || IsKeyDown(KEY_D)) {
+  if (IsKeyDown(KEY_DOWN) || IsKeyDown(KEY_S)) {
     if (acceleration > -1) acceleration -= 0.04f;
   }
 

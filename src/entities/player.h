@@ -1,4 +1,5 @@
-#pragma once
+#ifndef player
+#define player
 
 #include <math.h>
 
@@ -9,8 +10,6 @@
 
 class Player {
  private:
-  static const int SHIP_HEIGHT = 20;
-  static const int SHIP_WIDTH = 20;
   static const int TURRET_SIZE = 20;
   static const int TURRET_TRANSLATION = 9;
   static constexpr float PLAYER_SPEED = 2.0;
@@ -20,6 +19,8 @@ class Player {
   static Vector2 speed;
   static float acceleration;
   static float rotation;
+  static const int SHIP_HEIGHT = 20;
+  static const int SHIP_WIDTH = 20;
   static Color playerColor;
   static Color turretColor;
 
@@ -92,3 +93,5 @@ float Player::acceleration = 0;
 float Player::rotation = 0;
 Color Player::playerColor = RED;
 Color Player::turretColor = BLACK;
+
+#endif

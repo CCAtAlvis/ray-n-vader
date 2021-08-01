@@ -1,4 +1,5 @@
-#pragma once
+#ifndef bullet
+#define bullet
 
 #include <math.h>
 
@@ -26,3 +27,5 @@ class Bullet {
     // TODO: destroy bullet on colliding walls
   }
 };
+
+#endif

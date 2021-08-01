@@ -2,12 +2,7 @@
 #include "entities/player.h"
 #include "raylib.h"
 
-// Vector2 Player::position = {0, 0};
-// Vector2 Player::speed = {100, 100};
-// float Player::acceleration = 0;
-// float Player::rotation = 0;
-// Color Player::playerColor = RED;
-// Color Player::turretColor = BLACK;
+#include "headers/collision_handler.h"
 
 int main() {
   InitWindow(screenWidth, screenHeight, "player test");
@@ -33,6 +28,7 @@ int main() {
       Enemy::enemies[i].Update();
     }
     EndDrawing();
+    CheckCollision();
   }
 
   CloseWindow();

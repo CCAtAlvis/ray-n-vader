@@ -1,4 +1,4 @@
 #pragma once
 
-bool CheckPlayerCollision();
-bool CheckBulletCollision();
+void CheckPlayerCollision();
+void CheckBulletCollision();

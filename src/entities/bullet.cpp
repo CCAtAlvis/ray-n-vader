@@ -12,13 +12,19 @@ Bullet::Bullet(Vector2 v, float rotation) {
   direction.y = sinf((rotation - 90) * DEG2RAD);
   center = v;
   bulletes.push_back(*this);
+  isEnabled = true;
 }
 
-Bullet::~Bullet() { }
+Bullet::~Bullet() {}
 
-void Bullet::Draw() { DrawCircle(center.x, center.y, RADIUS, BULLET_COLOR); }
+void Bullet::Draw() {
+  if (!isEnabled) return;
+  DrawCircle(center.x, center.y, RADIUS, BULLET_COLOR);
+}
 
 void Bullet::Update() {
+  if (!isEnabled) return;
+
   center.x += direction.x * SPEED;
   center.y += direction.y * SPEED;
 
@@ -27,6 +33,10 @@ void Bullet::Update() {
   //     center.y > Const::screenHeight) {
   //   this->~Bullet();
   // }
+}
+
+void Bullet::Disable() {
+  isEnabled = false;
 }
 
 std::vector<Bullet> Bullet::bulletes;

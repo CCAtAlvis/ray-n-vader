@@ -1,6 +1,12 @@
 #pragma once
 
 #include "raylib.h"
+#include "game.h"
+#include <vector>
+
+#include "../headers/player.h"
+
+
 
 class Enemy {
  public:
@@ -8,7 +14,7 @@ class Enemy {
   Vector2 center;
 
  public:
-   static std::vector<Enemy> enemies;
+  static std::vector<Enemy> enemies;
   Enemy() {
     center = {
         GetRandomValue(-(screenMargin + radius), screenWidth + screenMargin),
@@ -21,9 +27,18 @@ class Enemy {
   void Draw() { DrawCircle(center.x, center.y, radius, BLUE); }
 
   void Update() {
-    if (center.x < Player::position.x) center.x += 1;
-    if (center.x > Player::position.x) center.x -= 1;
-    if (center.y < Player::position.y) center.y += 1;
-    if (center.y > Player::position.y) center.y -= 1;
+    float xfactor = abs(center.x - Player::position.x);
+    float yfactor = abs(center.y - Player::position.y);
+
+    if (center.x < Player::position.x)
+      center.x += xfactor / (xfactor + yfactor);
+    if (center.x > Player::position.x)
+      center.x -= xfactor / (xfactor + yfactor);
+    if (center.y < Player::position.y)
+      center.y += yfactor / (xfactor + yfactor);
+    if (center.y > Player::position.y)
+      center.y -= yfactor / (xfactor + yfactor);
   }
 };
+
+std::vector<Enemy> Enemy::enemies;

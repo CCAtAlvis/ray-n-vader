@@ -5,16 +5,22 @@
 
 #include "../headers/game.h"
 
-void DrawGui() {
-  const int width = 200;
-  const int height = 50;
-  const int x = Const::screenWidth / 2 - width / 2;
-  const int y = Const::screenHeight / 2 - height / 2;
-
+void ScoreGui() {
   char score[10];
   itoa(Const::score, score, 10);
   char scoreString[17] = "Score: ";
   strcat(scoreString, score);
 
-  DrawText(scoreString, Const::screenWidth / 2, 100, 40, BLACK);
+  DrawText(scoreString, Const::screenWidth / 2 - 100, 100, 40, BLACK);
+}
+
+void GameOverGui() {
+  if (Const::isGameOver) {
+    Const::isGamePaused = true;
+    DrawText("Game Over!", Const::screenWidth / 2 - 100,
+             Const::screenHeight / 2 - 100, 40, BLACK);
+
+    DrawText("Press [ESC] to quit!", Const::screenWidth / 2 - 100,
+             Const::screenHeight / 2 + 100, 20, BLACK);
+  }
 }

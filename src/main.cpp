@@ -5,14 +5,13 @@
 #include "entities/player.h"
 #include "entities/bullet.h"
 #include "raylib.h"
-#include <iostream>
 
 #include "headers/collision_handler.h"
 
-int Const::screenWidth = 800;
-int Const::screenHeight = 450;
-// int Const::screenWidth = 0;
-// int Const::screenHeight = 0;
+// int Const::screenWidth = 800;
+// int Const::screenHeight = 450;
+int Const::screenWidth = 0;
+int Const::screenHeight = 0;
 
 int Const::screenMargin = 20;
 int Const::score = 0;
@@ -22,11 +21,12 @@ bool Const::isGamePaused = false;
 
 void DrawRaylibLogo();
 bool ShowStartMenu();
-void DrawGui();
+void ScoreGui();
+void GameOverGui();
 
 int main() {
-  InitWindow(Const::screenWidth, Const::screenHeight, "player test");
-  // if (!IsWindowFullscreen()) ToggleFullscreen();
+  InitWindow(Const::screenWidth, Const::screenHeight, "Ray N Vader");
+  if (!IsWindowFullscreen()) ToggleFullscreen();
   Const::screenWidth = GetScreenWidth();
   Const::screenHeight = GetScreenHeight();
   Const::screenMargin = 20;
@@ -34,12 +34,12 @@ int main() {
   SetExitKey(0);
   SetTargetFPS(60);
 
-  // DrawRaylibLogo();
-  // bool shouldStart = ShowStartMenu();
-  // if (!shouldStart) {
-  //   CloseWindow();
-  //   return 0;
-  // }
+  DrawRaylibLogo();
+  bool shouldStart = ShowStartMenu();
+  if (!shouldStart) {
+    CloseWindow();
+    return 0;
+  }
 
   Player::Init();
   for (int i = 0; i < 30; ++i) {
@@ -51,8 +51,12 @@ int main() {
 
     ClearBackground(RAYWHITE);
 
-    DrawGui();
-    if (Const::isGamePaused) {
+    ScoreGui();
+    GameOverGui();
+
+    if (Const::isGameOver && IsKeyPressed(KEY_ESCAPE)) break;
+
+    if (Const::isGamePaused || Const::isGameOver) {
       EndDrawing();
       continue;
     }

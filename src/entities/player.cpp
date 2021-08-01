@@ -12,7 +12,7 @@ float Player::acceleration = 0;
 float Player::rotation = 0;
 Color Player::playerColor = RED;
 Color Player::turretColor = BLACK;
-int Player::life = 1;
+int Player::life = 100;
 
 void Player::Init() {
   position = {Const::screenWidth / 2.0f, Const::screenHeight / 2.0f - SHIP_HEIGHT / 2};
@@ -78,6 +78,5 @@ void Player::Update() {
 
 void Player::TakeDamage(int damage) {
   life -= damage;
-
-  if (life < 0) Const::isGameOver = true;
+  if (life <= 0) Const::isGameOver = true;
 }

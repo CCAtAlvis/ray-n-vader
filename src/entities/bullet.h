@@ -6,11 +6,11 @@
 
 class Bullet {
  private:
-  static constexpr float RADIUS = 4;
   static constexpr Color BULLET_COLOR = RED;
   static constexpr float SPEED = 2;
 
  public:
+  static constexpr float RADIUS = 4;
   static std::vector<Bullet> bulletes;
 
   Vector2 center;

@@ -3,8 +3,9 @@
 #include "entities/player.h"
 #include "entities/bullet.h"
 #include "raylib.h"
+#include <iostream>
 
-// #include "headers/collision_handler.h"
+#include "headers/collision_handler.h"
 
 int Const::screenWidth = 0;
 int Const::screenHeight = 0;
@@ -43,7 +44,8 @@ int main() {
       Bullet::bulletes[i].Update();
     }
     EndDrawing();
-    // CheckCollision();
+    CheckBulletCollision();
+    CheckPlayerCollision();
   }
 
   CloseWindow();

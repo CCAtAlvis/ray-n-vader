@@ -5,12 +5,14 @@
 #include "player.h"
 #include "raylib.h"
 #include "raymath.h"
+#include <iostream>
 
 Enemy::Enemy() {
-  center = {
-      GetRandomValue(-(Const::screenMargin + radius), Const::screenWidth + Const::screenMargin),
-      GetRandomValue(-(Const::screenMargin + radius), Const::screenHeight + Const::screenMargin)};
   radius = 16;
+  center = {GetRandomValue(-(Const::screenMargin + radius),
+                           Const::screenWidth + Const::screenMargin),
+            GetRandomValue(-(Const::screenMargin + radius),
+                           Const::screenHeight + Const::screenMargin)};
 
   enemies.push_back(*this);
 }
@@ -26,5 +28,13 @@ void Enemy::Update() {
   if (center.y < Player::position.y) center.y += yfactor / (xfactor + yfactor);
   if (center.y > Player::position.y) center.y -= yfactor / (xfactor + yfactor);
 }
+
+void Enemy::Reset() { 
+  radius = 16;
+  center = {GetRandomValue(-(Const::screenMargin + radius),
+                           Const::screenWidth + Const::screenMargin),
+            GetRandomValue(-(Const::screenMargin + radius),
+                           Const::screenHeight + Const::screenMargin)};
+ }
 
 std::vector<Enemy> Enemy::enemies;

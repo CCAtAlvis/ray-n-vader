@@ -13,6 +13,7 @@ class Enemy {
   static std::vector<Enemy> enemies;
 
   Enemy();
+  void Reset();
   void Draw();
   void Update();
 };

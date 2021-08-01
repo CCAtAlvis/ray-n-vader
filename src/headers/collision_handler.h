@@ -1,3 +1,4 @@
 #pragma once
 
-bool CheckCollision();
+bool CheckPlayerCollision();
+bool CheckBulletCollision();

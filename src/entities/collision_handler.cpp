@@ -2,16 +2,34 @@
 #include "enemy.h"
 #include "player.h"
 #include "raylib.h"
+#include "bullet.h"
 
-
-bool CheckCollision() {
+bool CheckPlayerCollision() {
   for (auto e : Enemy::enemies) {
-      Vector2 center = e.center;
-      float radius = radius;
-      Rectangle rec{Player::position.x, Player::position.y, Player::SHIP_HEIGHT, Player::SHIP_WIDTH};
-    bool collision =
-        CheckCollisionCircleRec(center, radius, rec);
-        if(collision) return true;
+    Rectangle rec{Player::position.x, Player::position.y,
+                  Player::SHIP_HEIGHT + 100, Player::SHIP_WIDTH + 100};
+    DrawRectangleLinesEx(rec, 2, RED);
+    bool collision = CheckCollisionCircleRec(e.center, e.radius, rec);
+
+    if (collision) {
+      Player::TakeHit(20);
+      return true;
+    }
+  }
+  return false;
+}
+
+bool CheckBulletCollision() {
+  for (auto e : Enemy::enemies) {
+    for (auto b : Bullet::bulletes) {
+      bool collision =
+          CheckCollisionCircles(e.center, e.radius, b.center, b.RADIUS);
+
+      if (collision) {
+        e.Reset();
+        return true;
+      }
+    }
   }
   return false;
 }

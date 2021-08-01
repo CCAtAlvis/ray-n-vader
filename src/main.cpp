@@ -15,6 +15,8 @@ int Const::screenMargin = 20;
 bool Const::isGameOver = false;
 bool Const::isGamePaused = false;
 
+void DrawRaylibLogo();
+
 int main() {
   InitWindow(Const::screenWidth, Const::screenHeight, "player test");
   // if (!IsWindowFullscreen()) ToggleFullscreen();
@@ -23,6 +25,8 @@ int main() {
   Const::screenMargin = 20;
 
   SetTargetFPS(60);
+
+  DrawRaylibLogo();
 
   Player::Init();
   for (int i = 0; i < 30; ++i) {
@@ -46,8 +50,8 @@ int main() {
       Bullet::bulletes[i].Update();
     }
     EndDrawing();
-    CheckBulletCollision();
-    CheckPlayerCollision();
+    // CheckBulletCollision();
+    // CheckPlayerCollision();
   }
 
   CloseWindow();

@@ -2,10 +2,7 @@
 #define bullet
 
 #include <vector>
-
-#include "player.h"
 #include "raylib.h"
-#include "raymath.h"
 
 class Bullet {
  private:

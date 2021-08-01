@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+#include "bullet.h"
 #include "player.h"
 #include "raylib.h"
 #include "raymath.h"

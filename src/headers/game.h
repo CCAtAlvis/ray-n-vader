@@ -1,5 +1,11 @@
-#pragma once
+#ifndef game_const
+#define game_const
 
-int screenWidth = 800;
-int screenHeight = 450;
-int screenMargin = 20;
+class Const {
+ public:
+  static int screenWidth;
+  static int screenHeight;
+  static int screenMargin;
+};
+
+#endif

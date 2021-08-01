@@ -2,9 +2,6 @@
 #define enemy
 
 #include <vector>
-
-#include "../headers/game.h"
-#include "player.h"
 #include "raylib.h"
 
 class Enemy {
@@ -16,9 +13,7 @@ class Enemy {
   static std::vector<Enemy> enemies;
 
   Enemy();
-
   void Draw();
-
   void Update();
 };
 

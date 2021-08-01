@@ -1,3 +1,4 @@
+#include "headers/game.h"
 #include "entities/enemy.h"
 #include "entities/player.h"
 #include "entities/bullet.h"
@@ -5,11 +6,18 @@
 
 // #include "headers/collision_handler.h"
 
+int Const::screenWidth = 0;
+int Const::screenHeight = 0;
+int Const::screenMargin = 20;
+
 int main() {
-  InitWindow(screenWidth, screenHeight, "player test");
-  // if (!IsWindowFullscreen()) ToggleFullscreen();
+  InitWindow(Const::screenWidth, Const::screenHeight, "player test");
+  if (!IsWindowFullscreen()) ToggleFullscreen();
   // screenWidth = GetScreenWidth();
   // screenHeight = GetScreenHeight();
+  Const::screenWidth = GetScreenWidth();
+  Const::screenHeight = GetScreenWidth();
+  Const::screenMargin = 20;
 
   SetTargetFPS(60);
 
@@ -24,10 +32,11 @@ int main() {
     ClearBackground(RAYWHITE);
     Player::Update();
     Player::Draw();
-    // for (int i = 0; i < Enemy::enemies.size(); ++i) {
-    //   Enemy::enemies[i].Draw();
-    //   Enemy::enemies[i].Update();
-    // }
+
+    for (int i = 0; i < Enemy::enemies.size(); ++i) {
+      Enemy::enemies[i].Draw();
+      Enemy::enemies[i].Update();
+    }
 
     for (int i = 0; i < Bullet::bulletes.size(); ++i) {
       Bullet::bulletes[i].Draw();

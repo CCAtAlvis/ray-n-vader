@@ -1,24 +1,23 @@
-#ifndef enemy
-#define enemy
-
 #include <vector>
 
+#include "../headers/game.h"
 #include "enemy.h"
 #include "player.h"
 #include "raylib.h"
+#include "raymath.h"
 
 Enemy::Enemy() {
   center = {
-      GetRandomValue(-(screenMargin + radius), screenWidth + screenMargin),
-      GetRandomValue(-(screenMargin + radius), screenHeight + screenMargin)};
+      GetRandomValue(-(Const::screenMargin + radius), Const::screenWidth + Const::screenMargin),
+      GetRandomValue(-(Const::screenMargin + radius), Const::screenHeight + Const::screenMargin)};
   radius = 16;
 
   enemies.push_back(*this);
 }
 
-Enemy::Draw() { DrawCircle(center.x, center.y, radius, BLUE); }
+void Enemy::Draw() { DrawCircle(center.x, center.y, radius, BLUE); }
 
-Enemy::Update() {
+void Enemy::Update() {
   float xfactor = abs(center.x - Player::position.x);
   float yfactor = abs(center.y - Player::position.y);
 
@@ -29,5 +28,3 @@ Enemy::Update() {
 }
 
 std::vector<Enemy> Enemy::enemies;
-
-#endif

@@ -12,6 +12,7 @@ float Player::acceleration = 0;
 float Player::rotation = 0;
 Color Player::playerColor = RED;
 Color Player::turretColor = BLACK;
+int Player::life = 100;
 
 void Player::Init() {
   position = {Const::screenWidth / 2.0f, Const::screenHeight / 2.0f - SHIP_HEIGHT / 2};
@@ -62,6 +63,8 @@ void Player::Update() {
   else if (position.x < SHIP_WIDTH + Const::screenMargin)
     position.x = SHIP_WIDTH + Const::screenMargin;
 
+// std::cout << position.y << "\t" << Const::screenHeight << std::endl;
+
   if (position.y > Const::screenHeight - SHIP_HEIGHT - Const::screenMargin)
     position.y = Const::screenHeight - SHIP_HEIGHT - Const::screenMargin;
   else if (position.y < SHIP_HEIGHT + Const::screenMargin)
@@ -71,4 +74,10 @@ void Player::Update() {
   position.y -= (speed.y * acceleration);
 
   acceleration = Lerp(acceleration, 0, 0.03f);
+}
+
+void Player::TakeDamage(int damage) {
+  life -= damage;
+
+  if (life < 0) Const::isGameOver = true;
 }

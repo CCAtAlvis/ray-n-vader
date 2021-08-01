@@ -18,10 +18,12 @@ class Player {
   static float rotation;
   static Color playerColor;
   static Color turretColor;
+  static int life;
 
   static void Init();
   static void Draw();
   static void Update();
+  static void TakeDamage(int damage);
 };
 
 #endif

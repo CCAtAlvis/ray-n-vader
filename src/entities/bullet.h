@@ -7,7 +7,7 @@
 class Bullet {
  private:
   static constexpr Color BULLET_COLOR = RED;
-  static constexpr float SPEED = 2;
+  static constexpr float SPEED = 7;
 
  public:
   static constexpr float RADIUS = 4;

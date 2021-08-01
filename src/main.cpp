@@ -11,11 +11,14 @@
 
 int Const::screenWidth = 800;
 int Const::screenHeight = 450;
+// int Const::screenWidth = 0;
+// int Const::screenHeight = 0;
 int Const::screenMargin = 20;
 bool Const::isGameOver = false;
 bool Const::isGamePaused = false;
 
 void DrawRaylibLogo();
+bool ShowStartMenu();
 
 int main() {
   InitWindow(Const::screenWidth, Const::screenHeight, "player test");
@@ -24,9 +27,15 @@ int main() {
   Const::screenHeight = GetScreenHeight();
   Const::screenMargin = 20;
 
+  SetExitKey(0);
   SetTargetFPS(60);
 
   DrawRaylibLogo();
+  bool shouldStart = ShowStartMenu();
+  if (!shouldStart) {
+    CloseWindow();
+    return 0;
+  }
 
   Player::Init();
   for (int i = 0; i < 30; ++i) {

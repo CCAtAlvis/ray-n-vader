@@ -12,7 +12,7 @@ float Player::acceleration = 0;
 float Player::rotation = 0;
 Color Player::playerColor = RED;
 Color Player::turretColor = BLACK;
-int Player::life = 100;
+int Player::life = 1;
 
 void Player::Init() {
   position = {Const::screenWidth / 2.0f, Const::screenHeight / 2.0f - SHIP_HEIGHT / 2};

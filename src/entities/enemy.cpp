@@ -1,70 +1,44 @@
-
-#include <vector>
 #include <iostream>
+#include <vector>
+
+#include "../headers/player.h"
+#include "../headers/enemy.h"
 #include "raylib.h"
-class Enemy
-{
 
-public:
-    float radius;
-    Vector2 center;
+Vector2 Player::position = {100, 100};
+Vector2 Player::speed = {100, 100};
 
-    Enemy(float r, int x, int y)
-    {
-        radius = r;
-        center = {x, y};
+int screenWidth = 800;
+int screenHeight = 450;
+int screenMargin = 20;
+
+
+std::vector<Enemy> Enemy::enemies;
+
+int main() {
+  InitWindow(screenWidth, screenHeight, "player test");
+
+  screenWidth = GetScreenWidth();
+  screenHeight = GetScreenHeight();
+
+  SetTargetFPS(60);
+
+  for (int i = 0; i < 30; ++i) {
+    Enemy e;
+  }
+
+  while (!WindowShouldClose()) {
+    ClearBackground(RAYWHITE);
+    BeginDrawing();
+
+    for (int i = 0; i < Enemy::enemies.size(); ++i) {
+      Enemy::enemies[i].Draw();
+      Enemy::enemies[i].Update();
     }
 
-    void draw()
-    {
-        DrawCircle(center.x, center.y, radius, RED);
-    }
+    EndDrawing();
+  }
 
-    void update()
-    {
-        // get player's position
-        Vector2 player = {100, 100};
-        center.x += 1;
-        center.y += 1;
-    }
-};
-
-int main()
-{
-    int screenWidth = 600;
-    int screenHeight = 600;
-
-    InitWindow(screenWidth, screenHeight, "test game");
-    if (!IsWindowFullscreen())
-        ToggleFullscreen();
-
-    SetTargetFPS(60);
-
-    std::vector<Enemy> enemies;
-
-    for (int i = 0; i < 30; ++i)
-    {
-        int x = GetRandomValue(1, screenWidth);
-        int y = GetRandomValue(1, screenHeight);
-        int radius = GetRandomValue(6, 10);
-        Enemy e(radius, x, y);
-        enemies.push_back(e);
-    }
-
-    while (!WindowShouldClose())
-    {
-        ClearBackground(RAYWHITE);
-        BeginDrawing();
-
-        for (int i = 0; i < 30; ++i)
-        {
-            enemies[i].draw();
-            enemies[i].update();
-        }
-
-        EndDrawing();
-    }
-
-    CloseWindow();
-    return 0;
+  CloseWindow();
+  return 0;
 }

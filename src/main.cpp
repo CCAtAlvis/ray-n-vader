@@ -13,12 +13,16 @@ int Const::screenWidth = 800;
 int Const::screenHeight = 450;
 // int Const::screenWidth = 0;
 // int Const::screenHeight = 0;
+
 int Const::screenMargin = 20;
+int Const::score = 0;
+
 bool Const::isGameOver = false;
 bool Const::isGamePaused = false;
 
 void DrawRaylibLogo();
 bool ShowStartMenu();
+void DrawGui();
 
 int main() {
   InitWindow(Const::screenWidth, Const::screenHeight, "player test");
@@ -30,12 +34,12 @@ int main() {
   SetExitKey(0);
   SetTargetFPS(60);
 
-  DrawRaylibLogo();
-  bool shouldStart = ShowStartMenu();
-  if (!shouldStart) {
-    CloseWindow();
-    return 0;
-  }
+  // DrawRaylibLogo();
+  // bool shouldStart = ShowStartMenu();
+  // if (!shouldStart) {
+  //   CloseWindow();
+  //   return 0;
+  // }
 
   Player::Init();
   for (int i = 0; i < 30; ++i) {
@@ -46,6 +50,13 @@ int main() {
     BeginDrawing();
 
     ClearBackground(RAYWHITE);
+
+    DrawGui();
+    if (Const::isGamePaused) {
+      EndDrawing();
+      continue;
+    }
+
     Player::Update();
     Player::Draw();
 
@@ -59,8 +70,8 @@ int main() {
       Bullet::bulletes[i].Update();
     }
     EndDrawing();
-    // CheckBulletCollision();
-    // CheckPlayerCollision();
+    CheckBulletCollision();
+    CheckPlayerCollision();
   }
 
   CloseWindow();

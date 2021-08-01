@@ -3,35 +3,37 @@
 #include "player.h"
 #include "raylib.h"
 #include "bullet.h"
+#include "../headers/game.h"
 #include <iostream>
 
-bool CheckPlayerCollision() {
+void CheckPlayerCollision() {
   for (auto &e : Enemy::enemies) {
-    Rectangle rec{Player::position.x, Player::position.y,
-                  Player::SHIP_HEIGHT + 100, Player::SHIP_WIDTH + 100};
-    DrawRectangleLinesEx(rec, 2, RED);
+    Rectangle rec{Player::position.x - Player::SHIP_WIDTH / 2 - 20,
+                  Player::position.y - Player::SHIP_HEIGHT / 2 - 20,
+                  Player::SHIP_WIDTH + 40, Player::SHIP_HEIGHT + 40};
+    DrawRectangleLinesEx(rec, 2, ORANGE);
     bool collision = CheckCollisionCircleRec(e.center, e.radius, rec);
 
     if (collision) {
       Player::TakeDamage(20);
       e.Reset();
-      return true;
     }
   }
-  return false;
 }
 
-bool CheckBulletCollision() {
+void CheckBulletCollision() {
   for (auto &e : Enemy::enemies) {
-    for (auto b : Bullet::bulletes) {
+    for (auto &b : Bullet::bulletes) {
+      if (!b.isEnabled) continue;
+
       bool collision =
           CheckCollisionCircles(e.center, e.radius, b.center, b.RADIUS);
 
       if (collision) {
         e.Reset();
-        return true;
+        b.Disable();
+        Const::score++;
       }
     }
   }
-  return false;
 }

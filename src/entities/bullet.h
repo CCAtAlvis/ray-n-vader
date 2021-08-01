@@ -15,11 +15,13 @@ class Bullet {
 
   Vector2 center;
   Vector2 direction;
+  bool isEnabled;
 
   Bullet(Vector2 v, float rotation);
   ~Bullet();
   void Draw();
   void Update();
+  void Disable();
 };
 
 #endif

@@ -1,11 +1,12 @@
-#ifndef enemy
-#define enemy
+#pragma once
 
+#include "raylib.h"
+#include "game.h"
 #include <vector>
 
-#include "../headers/game.h"
-#include "player.h"
-#include "raylib.h"
+#include "../headers/player.h"
+
+
 
 class Enemy {
  public:
@@ -14,7 +15,6 @@ class Enemy {
 
  public:
   static std::vector<Enemy> enemies;
-
   Enemy() {
     center = {
         GetRandomValue(-(screenMargin + radius), screenWidth + screenMargin),
@@ -42,5 +42,3 @@ class Enemy {
 };
 
 std::vector<Enemy> Enemy::enemies;
-
-#endif

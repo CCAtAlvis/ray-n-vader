@@ -1,20 +1,19 @@
-#include "headers/enemy.h"
-#include "headers/player.h"
+#include "entities/enemy.h"
+#include "entities/player.h"
 #include "raylib.h"
 
-Vector2 Player::position = {0, 0};
-Vector2 Player::speed = {100, 100};
-float Player::acceleration = 0;
-float Player::rotation = 0;
-Color Player::playerColor = RED;
-Color Player::turretColor = BLACK;
+// Vector2 Player::position = {0, 0};
+// Vector2 Player::speed = {100, 100};
+// float Player::acceleration = 0;
+// float Player::rotation = 0;
+// Color Player::playerColor = RED;
+// Color Player::turretColor = BLACK;
 
 int main() {
   InitWindow(screenWidth, screenHeight, "player test");
   // if (!IsWindowFullscreen()) ToggleFullscreen();
-
-  screenWidth = GetScreenWidth();
-  screenHeight = GetScreenHeight();
+  // screenWidth = GetScreenWidth();
+  // screenHeight = GetScreenHeight();
 
   SetTargetFPS(60);
 

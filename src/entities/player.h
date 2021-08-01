@@ -2,10 +2,10 @@
 
 #include <math.h>
 
+#include "../headers/game.h"
+#include "bullet.h"
 #include "raylib.h"
 #include "raymath.h"
-
-#include "bullet.h"
 
 class Player {
  private:
@@ -14,9 +14,6 @@ class Player {
   static const int TURRET_SIZE = 20;
   static const int TURRET_TRANSLATION = 9;
   static constexpr float PLAYER_SPEED = 2.0;
-
-  static int screenWidth;
-  static int screenHeight;
 
  public:
   static Vector2 position;
@@ -83,6 +80,8 @@ class Player {
 
     if (IsKeyPressed(KEY_SPACE)) {
       Bullet b;
+      b.direction.x = sin(rotation * DEG2RAD);
+      b.direction.y = cos(rotation * DEG2RAD);
     }
   }
 };
@@ -93,4 +92,3 @@ float Player::acceleration = 0;
 float Player::rotation = 0;
 Color Player::playerColor = RED;
 Color Player::turretColor = BLACK;
-

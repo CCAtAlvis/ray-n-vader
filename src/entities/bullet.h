@@ -2,9 +2,8 @@
 
 #include <math.h>
 
-#include "raylib.h"
-
 #include "player.h"
+#include "raylib.h"
 
 class Bullet {
  private:
@@ -16,15 +15,14 @@ class Bullet {
   Vector2 center;
   Vector2 direction;
 
-  Bullet() {
-    direction.x = sin(Player::rotation * DEG2RAD);
-    direction.y = cos(Player::rotation * DEG2RAD);
-  }
+  Bullet() { }
 
   void draw() { DrawCircle(center.x, center.y, RADIUS, BULLET_COLOR); }
 
   void update() {
     center.x += direction.x * SPEED;
     center.y += direction.y * SPEED;
+
+    // TODO: destroy bullet on colliding walls
   }
 };

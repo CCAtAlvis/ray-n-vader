@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "headers/game.h"
 #include "entities/enemy.h"
 #include "entities/player.h"
@@ -6,17 +8,15 @@
 
 // #include "headers/collision_handler.h"
 
-int Const::screenWidth = 0;
-int Const::screenHeight = 0;
+int Const::screenWidth = 800;
+int Const::screenHeight = 450;
 int Const::screenMargin = 20;
 
 int main() {
   InitWindow(Const::screenWidth, Const::screenHeight, "player test");
-  if (!IsWindowFullscreen()) ToggleFullscreen();
-  // screenWidth = GetScreenWidth();
-  // screenHeight = GetScreenHeight();
+  // if (!IsWindowFullscreen()) ToggleFullscreen();
   Const::screenWidth = GetScreenWidth();
-  Const::screenHeight = GetScreenWidth();
+  Const::screenHeight = GetScreenHeight();
   Const::screenMargin = 20;
 
   SetTargetFPS(60);

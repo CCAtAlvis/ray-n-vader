@@ -62,6 +62,8 @@ void Player::Update() {
   else if (position.x < SHIP_WIDTH + Const::screenMargin)
     position.x = SHIP_WIDTH + Const::screenMargin;
 
+// std::cout << position.y << "\t" << Const::screenHeight << std::endl;
+
   if (position.y > Const::screenHeight - SHIP_HEIGHT - Const::screenMargin)
     position.y = Const::screenHeight - SHIP_HEIGHT - Const::screenMargin;
   else if (position.y < SHIP_HEIGHT + Const::screenMargin)

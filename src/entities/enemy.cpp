@@ -1,11 +1,12 @@
 #include <vector>
+#include <iostream>
 
-#include "../headers/game.h"
-#include "enemy.h"
-#include "player.h"
 #include "raylib.h"
 #include "raymath.h"
-#include <iostream>
+
+#include "../headers/game.h"
+#include "../headers/enemy.h"
+#include "../headers/player.h"
 
 Enemy::Enemy() {
   radius = 16;

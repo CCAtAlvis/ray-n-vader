@@ -1,10 +1,11 @@
 #include <iostream>
 
-#include "headers/game.h"
-#include "entities/enemy.h"
-#include "entities/player.h"
-#include "entities/bullet.h"
 #include "raylib.h"
+
+#include "headers/game.h"
+#include "headers/enemy.h"
+#include "headers/player.h"
+#include "headers/bullet.h"
 
 #include "headers/collision_handler.h"
 

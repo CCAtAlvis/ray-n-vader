@@ -1,11 +1,12 @@
 #include <iostream>
 #include <vector>
 
-#include "../headers/game.h"
-#include "bullet.h"
-#include "player.h"
 #include "raylib.h"
 #include "raymath.h"
+
+#include "../headers/game.h"
+#include "../headers/bullet.h"
+#include "../headers/player.h"
 
 Bullet::Bullet(Vector2 v, float rotation) {
   direction.x = cosf((rotation - 90) * DEG2RAD);
@@ -35,8 +36,6 @@ void Bullet::Update() {
   // }
 }
 
-void Bullet::Disable() {
-  isEnabled = false;
-}
+void Bullet::Disable() { isEnabled = false; }
 
 std::vector<Bullet> Bullet::bulletes;

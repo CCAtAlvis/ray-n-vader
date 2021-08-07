@@ -10,9 +10,10 @@ class Enemy {
   Vector2 center;
 
  public:
-  static std::vector<Enemy> enemies;
+  static Enemy enemies[30];
 
   Enemy();
+  Enemy(int i);
   void Reset();
   void Draw();
   void Update();

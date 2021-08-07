@@ -10,10 +10,10 @@
 #include "headers/collision_handler.h"
 #include "headers/gui.h"
 
-// int Const::screenWidth = 800;
-// int Const::screenHeight = 450;
-int Const::screenWidth = 0;
-int Const::screenHeight = 0;
+int Const::screenWidth = 800;
+int Const::screenHeight = 450;
+// int Const::screenWidth = 0;
+// int Const::screenHeight = 0;
 
 int Const::screenMargin = 20;
 int Const::score = 0;
@@ -23,7 +23,7 @@ bool Const::isGamePaused = false;
 
 int main() {
   InitWindow(Const::screenWidth, Const::screenHeight, "Ray N Vader");
-  if (!IsWindowFullscreen()) ToggleFullscreen();
+  // if (!IsWindowFullscreen()) ToggleFullscreen();
   Const::screenWidth = GetScreenWidth();
   Const::screenHeight = GetScreenHeight();
   Const::screenMargin = 20;
@@ -31,16 +31,16 @@ int main() {
   SetExitKey(0);
   SetTargetFPS(60);
 
-  DrawRaylibLogo();
-  bool shouldStart = ShowStartMenu();
-  if (!shouldStart) {
-    CloseWindow();
-    return 0;
-  }
+  // DrawRaylibLogo();
+  // bool shouldStart = ShowStartMenu();
+  // if (!shouldStart) {
+  //   CloseWindow();
+  //   return 0;
+  // }
 
   Player::Init();
   for (int i = 0; i < 30; ++i) {
-    Enemy e;
+    Enemy e(i);
   }
 
   while (!WindowShouldClose()) {
@@ -61,7 +61,7 @@ int main() {
     Player::Update();
     Player::Draw();
 
-    for (int i = 0; i < Enemy::enemies.size(); ++i) {
+    for (int i = 0; i < std::size(Enemy::enemies); ++i) {
       Enemy::enemies[i].Draw();
       Enemy::enemies[i].Update();
     }

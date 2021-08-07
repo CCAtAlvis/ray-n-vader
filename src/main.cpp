@@ -30,6 +30,9 @@ int main() {
   Const::screenWidth = GetScreenWidth();
   Const::screenHeight = GetScreenHeight();
   Const::screenMargin = 20;
+  Const::enemyStrengthColors.push_back(DARKBLUE);
+  Const::enemyStrengthColors.push_back(BLUE);
+  Const::enemyStrengthColors.push_back(SKYBLUE);
 
   SetExitKey(0);
   SetTargetFPS(60);

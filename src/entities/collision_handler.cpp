@@ -30,7 +30,7 @@ void CheckBulletCollision() {
           CheckCollisionCircles(e.center, e.radius, b.center, b.RADIUS);
 
       if (collision) {
-        e.Reset();
+        e.TakeDamage(e.unitStrength);
         b.Disable();
         Const::score++;
       }

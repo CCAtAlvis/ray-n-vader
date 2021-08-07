@@ -8,6 +8,7 @@
 #include "headers/bullet.h"
 
 #include "headers/collision_handler.h"
+#include "headers/gui.h"
 
 // int Const::screenWidth = 800;
 // int Const::screenHeight = 450;
@@ -19,11 +20,6 @@ int Const::score = 0;
 
 bool Const::isGameOver = false;
 bool Const::isGamePaused = false;
-
-void DrawRaylibLogo();
-bool ShowStartMenu();
-void ScoreGui();
-void GameOverGui();
 
 int main() {
   InitWindow(Const::screenWidth, Const::screenHeight, "Ray N Vader");

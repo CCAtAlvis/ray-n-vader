@@ -1,10 +1,11 @@
 #include <iostream>
 
-#include "../headers/game.h"
-#include "player.h"
-#include "bullet.h"
 #include "raylib.h"
 #include "raymath.h"
+
+#include "../headers/game.h"
+#include "../headers/player.h"
+#include "../headers/bullet.h"
 
 Vector2 Player::position = {0, 0};
 Vector2 Player::speed = {100, 100};
@@ -15,7 +16,8 @@ Color Player::turretColor = BLACK;
 int Player::life = 100;
 
 void Player::Init() {
-  position = {Const::screenWidth / 2.0f, Const::screenHeight / 2.0f - SHIP_HEIGHT / 2};
+  position = {Const::screenWidth / 2.0f,
+              Const::screenHeight / 2.0f - SHIP_HEIGHT / 2};
 }
 
 void Player::Draw() {
@@ -63,7 +65,7 @@ void Player::Update() {
   else if (position.x < SHIP_WIDTH + Const::screenMargin)
     position.x = SHIP_WIDTH + Const::screenMargin;
 
-// std::cout << position.y << "\t" << Const::screenHeight << std::endl;
+  // std::cout << position.y << "\t" << Const::screenHeight << std::endl;
 
   if (position.y > Const::screenHeight - SHIP_HEIGHT - Const::screenMargin)
     position.y = Const::screenHeight - SHIP_HEIGHT - Const::screenMargin;

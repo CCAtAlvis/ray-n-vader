@@ -1,10 +1,12 @@
-#include "../headers/collision_handler.h"
-#include "enemy.h"
-#include "player.h"
-#include "raylib.h"
-#include "bullet.h"
-#include "../headers/game.h"
 #include <iostream>
+
+#include "raylib.h"
+
+#include "../headers/game.h"
+#include "../headers/collision_handler.h"
+#include "../headers/enemy.h"
+#include "../headers/player.h"
+#include "../headers/bullet.h"
 
 void CheckPlayerCollision() {
   for (auto &e : Enemy::enemies) {

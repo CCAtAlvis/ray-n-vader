@@ -12,9 +12,11 @@ class Enemy {
   int unitStrength;
 
  public:
-  static std::vector<Enemy> enemies;
+  static Enemy enemies[30];
 
   Enemy();
+  Enemy(int i);
+
   void TakeDamage(int damage);
   void Reset();
   void Draw();

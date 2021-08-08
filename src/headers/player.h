@@ -23,6 +23,8 @@ class Player {
   static void Init();
   static void Draw();
   static void Update();
+  static void KeyboardUpdate();
+  static void ControllerUpdate();
   static void TakeDamage(int damage);
 };
 

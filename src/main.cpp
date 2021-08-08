@@ -10,6 +10,16 @@
 #include "headers/collision_handler.h"
 #include "headers/gui.h"
 
+// NOTE: Gamepad name ID depends on drivers and OS
+#define XBOX360_LEGACY_NAME_ID  "Xbox Controller"
+#if defined(PLATFORM_RPI)
+    #define XBOX360_NAME_ID     "Microsoft X-Box 360 pad"
+    #define PS3_NAME_ID         "PLAYSTATION(R)3 Controller"
+#else
+    #define XBOX360_NAME_ID     "Xbox 360 Controller"
+    #define PS3_NAME_ID         "PLAYSTATION(R)3 Controller"
+#endif
+
 int Const::screenWidth = 800;
 int Const::screenHeight = 450;
 // int Const::screenWidth = 0;
@@ -68,6 +78,8 @@ int main(int argc, char **argv) {
       continue;
     }
 
+    Player::ControllerUpdate();
+    Player::KeyboardUpdate();
     Player::Update();
     Player::Draw();
 

@@ -18,7 +18,7 @@ bool ShowStartMenu() {
     BeginDrawing();
     ClearBackground(RAYWHITE);
 
-    if (GuiButton((Rectangle){x, y, width, height}, "")) {
+    if (GuiButton((Rectangle){x, y, width, height}, "") || (IsGamepadAvailable(0) && IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_FACE_DOWN))) {
       return true;
     }
     DrawText("Start", x+ width/4, y+ height/4-5, 40, BLACK);

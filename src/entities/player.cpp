@@ -38,14 +38,14 @@ void Player::Draw() {
   v3.y -= cosf(rotation * DEG2RAD) * TURRET_TRANSLATION;
   DrawTriangle(v1, v2, v3, playerColor);
 
-  if (IsKeyPressed(KEY_SPACE)) {
+  if (IsKeyPressed(KEY_SPACE) || (IsGamepadAvailable(0) && IsGamepadButtonPressed(0, GAMEPAD_BUTTON_RIGHT_FACE_DOWN))) {
     Bullet b(v1, rotation);
   }
 
   DrawPoly(position, 4, SHIP_HEIGHT, rotation, playerColor);
 }
 
-void Player::Update() {
+void Player::KeyboardUpdate() {
   if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) rotation -= 5;
   if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) rotation += 5;
 
@@ -56,7 +56,24 @@ void Player::Update() {
   if (IsKeyDown(KEY_DOWN) || IsKeyDown(KEY_S)) {
     if (acceleration > -1) acceleration -= 0.04f;
   }
+}
 
+void Player::ControllerUpdate() {
+  if (!IsGamepadAvailable(0)) return;
+
+  if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_LEFT)) rotation -= 5;
+  if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_RIGHT)) rotation += 5;
+
+  if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_UP)) {
+    if (acceleration < 1) acceleration += 0.04f;
+  }
+
+  if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_DOWN)) {
+    if (acceleration > -1) acceleration -= 0.04f;
+  }
+}
+
+void Player::Update() {
   speed.x = sinf(rotation * DEG2RAD) * PLAYER_SPEED;
   speed.y = cosf(rotation * DEG2RAD) * PLAYER_SPEED;
 

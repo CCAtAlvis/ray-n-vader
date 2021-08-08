@@ -1,13 +1,16 @@
 #include <vector>
-
-#include "../headers/game.h"
-#include "enemy.h"
-#include "player.h"
-#include "raylib.h"
-#include "raymath.h"
 #include <iostream>
 
-Enemy::Enemy() {
+#include "raylib.h"
+#include "raymath.h"
+
+#include "../headers/game.h"
+#include "../headers/enemy.h"
+#include "../headers/player.h"
+
+Enemy::Enemy() {}
+
+Enemy::Enemy(int i) {
   radius = 16;
 
   int quadrant = GetRandomValue(1, 4);
@@ -20,7 +23,8 @@ Enemy::Enemy() {
   } else if (quadrant == 4) {
     center = {GetRandomValue(0, Const::screenWidth), Const::screenHeight};
   }
-  enemies.push_back(*this);
+
+  enemies[i] = *this;
 }
 
 void Enemy::Draw() { DrawCircle(center.x, center.y, radius, BLUE); }
@@ -48,4 +52,4 @@ void Enemy::Reset() {
   }
 }
 
-std::vector<Enemy> Enemy::enemies;
+Enemy Enemy::enemies[];

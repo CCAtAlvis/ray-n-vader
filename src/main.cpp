@@ -1,17 +1,19 @@
 #include <iostream>
 
-#include "headers/game.h"
-#include "entities/enemy.h"
-#include "entities/player.h"
-#include "entities/bullet.h"
 #include "raylib.h"
 
-#include "headers/collision_handler.h"
+#include "headers/game.h"
+#include "headers/enemy.h"
+#include "headers/player.h"
+#include "headers/bullet.h"
 
-// int Const::screenWidth = 800;
-// int Const::screenHeight = 450;
-int Const::screenWidth = 0;
-int Const::screenHeight = 0;
+#include "headers/collision_handler.h"
+#include "headers/gui.h"
+
+int Const::screenWidth = 800;
+int Const::screenHeight = 450;
+// int Const::screenWidth = 0;
+// int Const::screenHeight = 0;
 
 int Const::screenMargin = 20;
 int Const::score = 0;
@@ -26,7 +28,7 @@ void GameOverGui();
 
 int main(int argc, char **argv) {
   InitWindow(Const::screenWidth, Const::screenHeight, "Ray N Vader");
-  if (!IsWindowFullscreen()) ToggleFullscreen();
+  // if (!IsWindowFullscreen()) ToggleFullscreen();
   Const::screenWidth = GetScreenWidth();
   Const::screenHeight = GetScreenHeight();
   Const::screenMargin = 20;
@@ -45,7 +47,7 @@ int main(int argc, char **argv) {
 
   Player::Init();
   for (int i = 0; i < 30; ++i) {
-    Enemy e;
+    Enemy e(i);
   }
 
   while (!WindowShouldClose()) {
@@ -66,7 +68,7 @@ int main(int argc, char **argv) {
     Player::Update();
     Player::Draw();
 
-    for (int i = 0; i < Enemy::enemies.size(); ++i) {
+    for (int i = 0; i < std::size(Enemy::enemies); ++i) {
       Enemy::enemies[i].Draw();
       Enemy::enemies[i].Update();
     }

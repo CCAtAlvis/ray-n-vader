@@ -22,8 +22,11 @@
 
 int Const::screenWidth = 800;
 int Const::screenHeight = 450;
-// int Const::screenWidth = 0;
-// int Const::screenHeight = 0;
+
+#ifdef build
+int Const::screenWidth = 0;
+int Const::screenHeight = 0;
+#endif
 
 int Const::screenMargin = 20;
 int Const::score = 0;
@@ -31,17 +34,8 @@ int Const::score = 0;
 bool Const::isGameOver = false;
 bool Const::isGamePaused = false;
 
-void DrawRaylibLogo();
-bool ShowStartMenu();
-void ScoreGui();
-void GameOverGui();
-
 int main(int argc, char **argv) {
   InitWindow(Const::screenWidth, Const::screenHeight, "Ray N Vader");
-  // if (!IsWindowFullscreen()) ToggleFullscreen();
-  Const::screenWidth = GetScreenWidth();
-  Const::screenHeight = GetScreenHeight();
-  Const::screenMargin = 20;
   Const::enemyStrengthColors.push_back(DARKBLUE);
   Const::enemyStrengthColors.push_back(BLUE);
   Const::enemyStrengthColors.push_back(SKYBLUE);
@@ -49,7 +43,12 @@ int main(int argc, char **argv) {
   SetExitKey(0);
   SetTargetFPS(60);
 
-#ifndef test
+#ifdef build
+  if (!IsWindowFullscreen()) ToggleFullscreen();
+  Const::screenWidth = GetScreenWidth();
+  Const::screenHeight = GetScreenHeight();
+  Const::screenMargin = 20;
+
   DrawRaylibLogo();
   bool shouldStart = ShowStartMenu();
   if (!shouldStart) {

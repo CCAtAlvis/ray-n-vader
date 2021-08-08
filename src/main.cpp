@@ -24,7 +24,7 @@ bool ShowStartMenu();
 void ScoreGui();
 void GameOverGui();
 
-int main() {
+int main(int argc, char **argv) {
   InitWindow(Const::screenWidth, Const::screenHeight, "Ray N Vader");
   if (!IsWindowFullscreen()) ToggleFullscreen();
   Const::screenWidth = GetScreenWidth();
@@ -34,12 +34,14 @@ int main() {
   SetExitKey(0);
   SetTargetFPS(60);
 
+#ifndef test
   DrawRaylibLogo();
   bool shouldStart = ShowStartMenu();
   if (!shouldStart) {
     CloseWindow();
     return 0;
   }
+#endif
 
   Player::Init();
   for (int i = 0; i < 30; ++i) {

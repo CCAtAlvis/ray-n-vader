@@ -1,5 +1,7 @@
 #ifndef game_const
 #define game_const
+#include "raylib.h"
+#include <vector>
 
 class Const {
  public:
@@ -9,6 +11,7 @@ class Const {
   static int score;
   static bool isGameOver;
   static bool isGamePaused;
+  static std::vector<Color> enemyStrengthColors;
 };
 
 #endif

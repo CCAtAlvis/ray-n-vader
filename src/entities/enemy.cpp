@@ -12,6 +12,8 @@ Enemy::Enemy() {}
 
 Enemy::Enemy(int i) {
   radius = 16;
+  unitStrength = 20;
+  life = 20 * GetRandomValue(1, 3);
 
   int quadrant = GetRandomValue(1, 4);
   if (quadrant == 1) {
@@ -27,7 +29,14 @@ Enemy::Enemy(int i) {
   enemies[i] = *this;
 }
 
-void Enemy::Draw() { DrawCircle(center.x, center.y, radius, BLUE); }
+void Enemy::Draw() {
+  radius = 16;
+  int incrementalRadius = 8;
+  for (int i = (life / unitStrength) - 1; i >= 0; i--) {
+    DrawCircle(center.x, center.y, radius + (incrementalRadius * i), Const::enemyStrengthColors[i]);
+  }
+  radius += (incrementalRadius * (life / unitStrength));
+}
 
 void Enemy::Update() {
   float xfactor = abs(center.x - Player::position.x);
@@ -37,6 +46,12 @@ void Enemy::Update() {
   if (center.x > Player::position.x) center.x -= xfactor / (xfactor + yfactor);
   if (center.y < Player::position.y) center.y += yfactor / (xfactor + yfactor);
   if (center.y > Player::position.y) center.y -= yfactor / (xfactor + yfactor);
+}
+
+void Enemy::TakeDamage(int damage) {
+  life -= damage;
+  if (life == 0)
+    Reset();
 }
 
 void Enemy::Reset() {
@@ -53,3 +68,4 @@ void Enemy::Reset() {
 }
 
 Enemy Enemy::enemies[];
+std::vector<Color> Const::enemyStrengthColors;

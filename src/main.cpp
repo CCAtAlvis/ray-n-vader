@@ -24,13 +24,11 @@ int Const::score = 0;
 bool Const::isGameOver = false;
 bool Const::isGamePaused = false;
 
-void DrawRaylibLogo();
-bool ShowStartMenu();
-void ScoreGui();
-void GameOverGui();
-
 int main(int argc, char **argv) {
   InitWindow(Const::screenWidth, Const::screenHeight, "Ray N Vader");
+  Const::enemyStrengthColors.push_back(DARKBLUE);
+  Const::enemyStrengthColors.push_back(BLUE);
+  Const::enemyStrengthColors.push_back(SKYBLUE);
 
   SetExitKey(0);
   SetTargetFPS(60);

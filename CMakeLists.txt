@@ -11,4 +11,4 @@ file(GLOB SOURCES "include" "src/*" "src/entities/*"  "src/scenes/*")
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-target_link_libraries (${PROJECT_NAME} "-L${CMAKE_SOURCE_DIR}/lib" raylib opengl32 gdi32 winmm  )
+target_link_libraries (${PROJECT_NAME} "-L${CMAKE_SOURCE_DIR}/lib" raylib opengl32 gdi32 winmm)

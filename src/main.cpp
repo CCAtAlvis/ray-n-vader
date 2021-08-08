@@ -12,8 +12,11 @@
 
 int Const::screenWidth = 800;
 int Const::screenHeight = 450;
-// int Const::screenWidth = 0;
-// int Const::screenHeight = 0;
+
+#ifdef build
+int Const::screenWidth = 0;
+int Const::screenHeight = 0;
+#endif
 
 int Const::screenMargin = 20;
 int Const::score = 0;
@@ -28,15 +31,16 @@ void GameOverGui();
 
 int main(int argc, char **argv) {
   InitWindow(Const::screenWidth, Const::screenHeight, "Ray N Vader");
-  // if (!IsWindowFullscreen()) ToggleFullscreen();
-  Const::screenWidth = GetScreenWidth();
-  Const::screenHeight = GetScreenHeight();
-  Const::screenMargin = 20;
 
   SetExitKey(0);
   SetTargetFPS(60);
 
-#ifndef test
+#ifdef build
+  if (!IsWindowFullscreen()) ToggleFullscreen();
+  Const::screenWidth = GetScreenWidth();
+  Const::screenHeight = GetScreenHeight();
+  Const::screenMargin = 20;
+
   DrawRaylibLogo();
   bool shouldStart = ShowStartMenu();
   if (!shouldStart) {

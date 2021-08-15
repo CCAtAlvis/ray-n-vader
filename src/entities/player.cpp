@@ -61,6 +61,24 @@ void Player::KeyboardUpdate() {
 void Player::ControllerUpdate() {
   if (!IsGamepadAvailable(0)) return;
 
+  #pragma region Joy
+  if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_TRIGGER_2)) {
+    if (acceleration < 1) acceleration -= 0.04f;
+  }
+
+  if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_TRIGGER_2)) {
+    if (acceleration > -1) acceleration += 0.04f;
+  }
+
+  int xMovement = (int)(GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_X) * 10);
+  int yMovement = (int)(GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_Y) * 10);
+
+  if (xMovement != 0 || yMovement != 0)
+    rotation = atan2(yMovement, xMovement) * 180 / PI + 90;
+
+  #pragma endregion
+
+  #pragma region D-Pad
   if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_LEFT)) rotation -= 5;
   if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_RIGHT)) rotation += 5;
 
@@ -71,6 +89,7 @@ void Player::ControllerUpdate() {
   if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_DOWN)) {
     if (acceleration > -1) acceleration -= 0.04f;
   }
+  #pragma endregion
 }
 
 void Player::Update() {
